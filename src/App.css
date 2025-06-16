@@ -1,14 +1,372 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* Reset y configuración global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.contenedor{
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #0a0a0a;
+  color: #ffffff;
+}
+
+#root {
+  background-color: #0a0a0a;
+  min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Contenedor principal */
+.contenedor {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+/* Chat container */
+.chat {
+  width: 90%;
+  max-width: 900px;
+  height: 85vh;
+  background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+  border-radius: 20px;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Header del chat (nuevo) */
+.header-chat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+/* Título */
+.titulo {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(45deg, #00d4ff, #0099cc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+  flex: 1;
+}
+
+/* Botón limpiar (nuevo) */
+.btn-limpiar {
+  background: linear-gradient(45deg, #ff4444, #cc3333);
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 8px rgba(255, 68, 68, 0.2);
+}
+
+.btn-limpiar:hover {
+  background: linear-gradient(45deg, #ff6666, #aa2222);
+  box-shadow: 0 4px 12px rgba(255, 68, 68, 0.3);
+}
+
+.btn-limpiar:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 4px rgba(255, 68, 68, 0.2);
+}
+
+/* Área de mensajes */
+.mensajes {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar personalizada para mensajes */
+.mensajes::-webkit-scrollbar {
+  width: 8px;
+}
+
+.mensajes::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.mensajes::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #00d4ff, #0099cc);
+  border-radius: 10px;
+}
+
+.mensajes::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #0099ff, #0077bb);
+}
+
+/* Mensaje de bienvenida (nuevo) */
+.mensaje-bienvenida {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+  margin-top: 2rem;
+}
+
+/* Estilos para mensajes individuales (nuevo) */
+.mensaje {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border-radius: 12px;
+  max-width: 85%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.mensaje-usuario {
+  background: linear-gradient(135deg, #00d4ff, #0099cc);
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.mensaje-ia {
+  background: rgba(255, 255, 255, 0.1);
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.mensaje-error {
+  background: linear-gradient(135deg, #ff4444, #cc3333);
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.mensaje-cargando {
+  background: rgba(255, 255, 255, 0.1);
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* Autor del mensaje (nuevo) */
+.mensaje-autor {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.mensaje-usuario .mensaje-autor {
+  color: #ffffff;
+}
+
+.mensaje-ia .mensaje-autor,
+.mensaje-cargando .mensaje-autor {
+  color: #00d4ff;
+}
+
+.mensaje-error .mensaje-autor {
+  color: #ffffff;
+}
+
+/* Contenido del mensaje (nuevo) */
+.mensaje-contenido {
+  color: #ffffff;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.mensaje-cargando .mensaje-contenido {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+}
+
+/* Spinner de carga (nuevo) */
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(0, 212, 255, 0.3);
+  border-top: 2px solid #00d4ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Área de entrada */
+.entrada {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* Input de texto */
+#input_texto {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  color: #ffffff;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+  text-align: center;
+  
+}
+
+#input_texto::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  font-style: italic;
+}
+
+#input_texto:focus {
+  border-color: #00d4ff;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+  text-align: left;
+}
+
+#input_texto:focus::placeholder {
+  text-align: left;
+  transform: translateX(10px);
+}
+
+/* Botón enviar */
+.btn-enviar {
+  background: linear-gradient(45deg, #00d4ff, #0066aa);
+  border: none;
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 8px rgba(0, 212, 255, 0.2);
+}
+
+.btn-enviar:hover:not(:disabled) {
+  background: linear-gradient(45deg, #0099ff, #0044aa);
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+}
+
+.btn-enviar:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 0 1px 4px rgba(0, 212, 255, 0.2);
+}
+
+.btn-enviar:disabled {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .contenedor {
+    padding: 0.5rem;
+  }
+  
+  .chat {
+    width: 95%;
+    height: 90vh;
+    padding: 1.5rem;
+  }
+  
+  .titulo {
+    font-size: 2rem;
+  }
+  
+  .header-chat {
+    margin-bottom: 1.5rem;
+  }
+  
+  .entrada {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  #input_texto {
+    width: 100%;
+  }
+  
+  .btn-enviar {
+    width: 100%;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .chat {
+    width: 98%;
+    height: 95vh;
+    padding: 1rem;
+  }
+  
+  .titulo {
+    font-size: 1.8rem;
+  }
+  
+  #input_texto {
+    padding: 0.875rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Animaciones adicionales */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chat {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Efectos de hover mejorados */
+.entrada:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
 }
