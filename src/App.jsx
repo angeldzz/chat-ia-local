@@ -22,18 +22,25 @@ function App() {
     const mensajeUsuario = inputTexto.trim();
     
     // Agregar mensaje del usuario al historial
-    setMensajes(prev => [...prev, { tipo: 'usuario', contenido: mensajeUsuario }]);
+    const nuevosMensajes = [...mensajes, { tipo: 'usuario', contenido: mensajeUsuario }];
+    setMensajes(nuevosMensajes);
     setInputTexto(""); // Limpia el input inmediatamente
     setCargando(true);
     setError(null);
     
     const url = "/api/v1/chat/completions";
     
+    // Convertir el historial al formato que espera la API
+    const mensajesParaAPI = nuevosMensajes
+      .filter(msg => msg.tipo !== 'error') // Excluir mensajes de error
+      .map(msg => ({
+        role: msg.tipo === 'usuario' ? 'user' : 'assistant',
+        content: msg.contenido
+      }));
+    console.log(mensajesParaAPI);
     const data = {
       "model": modeloIA,
-      "messages": [
-        {"role": "user", "content": mensajeUsuario}
-      ],
+      "messages": mensajesParaAPI, // Enviar todo el historial
       "temperature": 0.8
     };
 
