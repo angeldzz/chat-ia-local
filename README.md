@@ -1,6 +1,29 @@
 <div align="center">
 
-<img src="https://img.icons8.com/fluency/96/000000/chat-bubble.png" alt="Chat IA Local" width="100" height="100"/>
+[Ver demostracion video](https://youtu.be/ZY5xA7vwzBk)
+
+### Capturas de pantalla
+
+<h3>Capturas de pantalla</h3>
+
+<table>
+  <tr>
+    <td><img src="funcionamiento/Gemma-IA-Local.png" width="300"/></td>
+    <td><img src="funcionamiento/Gemma-IA-Local-2.png" width="300"/></td>
+  </tr>
+  <tr>
+    <td><img src="funcionamiento/Gemma-IA-Local-3.png" width="300"/></td>
+    <td><img src="funcionamiento/Gemma-IA-Local-4.png" width="300"/></td>
+  </tr>
+  <tr>
+    <td><img src="funcionamiento/Gemma-IA-Local-5.png" width="300"/></td>
+    <td><img src="funcionamiento/Gemma-IA-Local-6.png" width="300"/></td>
+  </tr>
+  <tr>
+    <td><img src="funcionamiento/Gemma-IA-Local-7.png" width="300"/></td>
+    <td></td>
+  </tr>
+</table>
 
 # 🤖 Chat IA Local
 
