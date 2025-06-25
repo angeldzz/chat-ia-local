@@ -2,8 +2,6 @@
 
 [Ver demostracion video](https://youtu.be/ZY5xA7vwzBk)
 
-### Capturas de pantalla
-
 <h3>Capturas de pantalla</h3>
 
 <table>
