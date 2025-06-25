@@ -19,7 +19,6 @@
   </tr>
   <tr>
     <td><img src="funcionamiento/Gemma-IA-Local-7.png" width="300"/></td>
-    <td></td>
   </tr>
 </table>
 
